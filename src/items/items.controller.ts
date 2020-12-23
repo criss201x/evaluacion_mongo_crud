@@ -1,6 +1,6 @@
-import { Controller, Res, Post, Get, Put, Delete, Param, Body, HttpStatus, NotFoundException} from '@nestjs/common';
+import { Controller, Res, Post, Get, Put, Delete, Param, Body, HttpStatus, NotFoundException, Query} from '@nestjs/common';
 import { ItemsService } from './items.service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 import { ItemDto } from './dto/item.dto';
 
 
@@ -18,7 +18,7 @@ export class ItemsController {
     return res.status(HttpStatus.OK).json({Data: item, Message: "Registration successfull", Status: "201", Success: true} );
   }
 
-  @Get()
+  @Get()//se va aagregar fulters
   async getAll(@Res() res) {
     const items = await this.itemsService.getAll();
     return res.status(HttpStatus.OK).json({Data: items, Message: "Request successfull", Status: "200", Success: true} );
